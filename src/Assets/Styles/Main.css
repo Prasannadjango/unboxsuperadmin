@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'myfont';
+    src: url(../Fonts/Ubuntu-Regular.otf),
+    url(../Fonts/Ubuntu-Regular.ttf),
+    url(../Fonts/Ubuntu-Regular.woff),
+    url(../Fonts/Ubuntu-Regular.woff2);
+}
+*{
+    font-family: 'myfont';
+}
+:root {
+  --primary--color: #434578;
+}
+.Loginpage_container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 15px;
+  transform: translate(-50%, -50%);
+ box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;;
+}
+
+.Loginpage_container > .row > div:nth-child(1) > img {
+  height: 400px;
+  width: 100%;
+}
+.Login_Btn {
+  background-color: var(--primary--color) !important;
+  font-weight: bold !important;
+}
+.bgclr{
+  background-color: #e8e8ff !important;
+  height: 100%;
+  padding: 20px;
+  width: 100%;
+}
+.tablerowcolor{
+  background-color: var(--primary--color) !important;
+  color: #fff;
+}
+.Plans_card{
+  border: 0 !important;
+  border-radius: 10px !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.list-style{
+  list-style-type:square;
+}
+.Card_container{
+  height:fit-content;
+}
