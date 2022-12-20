@@ -9,13 +9,28 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 // 
 import { TextField } from '@mui/material';
+import { phoneRegExp, EmailRegExp, numberRegExp, PasswordRegExp } from '../Variables/Regex';
 
 
+// yup resolver conditions
+
+const schema = yup.object({
+    SchoolName: yup.string().required("Schoolname is Required"),
+
+    phoneNumber: yup.string().required("phone number is required").matches(phoneRegExp, 'Phone number is not valid').min(10, "Phone number must 10 Digits").max(10, "Phone number must 10 Digits"),
+    SchoolEmail: yup.string().required('SchoolEmail is Required').matches(EmailRegExp, 'Email is Not Valid'),
+
+    password: yup.string().required('Password is required')
+        .matches(PasswordRegExp, 'Password is Weak , Password must have Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character'),
+
+}).required();
 
 
 
 function Listschoolpage() {
-   
+    const { register, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
 
     const [show, setShow] = useState(false);
 
@@ -48,7 +63,7 @@ function Listschoolpage() {
 
         try {
 
-            const docRef = await addDoc(collection(db, 'Newschool/' + uniqueschoolId + '/schools'), {
+            const docRef = await addDoc(collection(db, 'New school/' + uniqueschoolId + '/schools'), {
                 schoolname: schoolName,
                 schoolemail: schoolEmail,
                 schoolphonenumber: schoolPhonenumber,
@@ -63,17 +78,16 @@ function Listschoolpage() {
         }
     }
 
+    const fetchschooldata = async () => {
 
-        const  fetchschooldata = (Newschool) => {
-       
-        // const querySnapshot = getDocs(collection(db, "Newschool").doc(Newschool.id).collection().get())
-        getDocs(collectionGroup(db, "/Newschool"))
-        .then(response => {
-            response.forEach(doc => {
-                console.log(doc.id, ' => ', doc.data());
-              });
-        });
-      
+        await getDocs(collection(db, "Newschool/c1b0c/schools"))
+            .then((querySnapshot) => {
+                const newData = querySnapshot.docs
+                    .map((doc) => ({ ...doc.data(), id: doc.id }));
+                setSchools(newData);
+                console.log(schools, newData);
+            })
+
     }
 
     useEffect(() => {
@@ -82,16 +96,7 @@ function Listschoolpage() {
     }, [])
 
 
-    // const querySnapshot = await db.collectionGroup('landmarks').where('type', '==', 'museum').get();
-    // querySnapshot.forEach((doc) => {
-    //   console.log(doc.id, ' => ', doc.data());
-    // });
-
-    // useEffect(() => {
-    //     fetchchooldata();
-      
-    // }, [])
-
+ 
 
 
  
@@ -158,12 +163,12 @@ function Listschoolpage() {
                                     id="outlined-textarea"
                                     label="Schoolname"
                                     value={schoolName}
-                                  
+                                    {...register("SchoolName")}
                                     className='w-100 my-2 '
                                     onChange={(e) => setSchoolName(e.target.value)}
 
                                 />
-                               
+                                <p className='text-danger'>{errors.SchoolName?.message}</p>
                                 <TextField
                                     id="outlined-textarea"
                                     label="School Email"
