@@ -33,6 +33,10 @@
   height: 100%;
   padding: 20px;
   width: 100%;
+  
+}
+.bgclr>div{
+  border-radius: 15px;
 }
 .tablerowcolor{
   background-color: var(--primary--color) !important;

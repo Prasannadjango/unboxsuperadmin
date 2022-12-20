@@ -1,83 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Modal, Form } from 'react-bootstrap';
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc,collectionGroup, query, where, getDocs} from "firebase/firestore";
 import { db } from "../firebase-config";
 import * as FaIcons from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { v4 as uuid } from 'uuid';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 // 
 import { TextField } from '@mui/material';
-import { phoneRegExp, EmailRegExp, numberRegExp, PasswordRegExp } from '../Variables/Regex';
-const schoolCollectionRef = collection(db, "Newschool");
-// yup resolver conditions
 
-const schema = yup.object({
-    SchoolName: yup.string().required("Schoolname is Required"),
 
-    phoneNumber: yup.string().required("phone number is required").matches(phoneRegExp, 'Phone number is not valid').min(10, "Phone number must 10 Digits").max(10, "Phone number must 10 Digits"),
-    SchoolEmail: yup.string().required('SchoolEmail is Required').matches(EmailRegExp, 'Email is Not Valid'),
-
-    password: yup.string().required('Password is required')
-        .matches(PasswordRegExp, 'Password is Weak , Password must have Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character'),
-
-}).required();
 
 
 
 function Listschoolpage() {
-    const { register, formState: { errors } } = useForm({
-        resolver: yupResolver(schema)
-    });
+   
 
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [values, setValues] = React.useState({
-        amount: '',
-        password: '',
-        weight: '',
-        weightRange: '',
-        showPassword: false,
-    });
+   
 
-    const handleChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-    };
 
-    const handleClickShowPassword = () => {
-        setValues({
-            ...values,
-            showPassword: !values.showPassword,
-        });
-    };
-
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
-    const currencies = [
-        {
-            value: 'male',
-            label: 'male',
-        },
-        {
-            value: 'female',
-            label: 'female',
-
-        },
-        {
-            value: 'others',
-            label: 'others',
-
-        },
-
-    ];
-    const [currency, setCurrency] = React.useState('EUR');
-
-    const handleChange1 = (event) => {
-        setCurrency(event.target.value);
-    };
+ 
 
     const [schools, setSchools] = useState([]);
 
@@ -89,13 +36,19 @@ function Listschoolpage() {
     const [schoolLocation, setSchoolLocation] = useState("");
     const [schoolInfo, setSchoolInfo] = useState("");
     const [schoolPassword, setSchoolPassword] = useState("");
+    const unique_id = uuid();
+    const [uniqueschoolId, setSchooluniqueid] = useState(schoolName.slice(0, 2) + unique_id.slice(0, 5));
+    
+    const [newschooldata,setNewschooldata] = useState([]);
+
 
     //    function for create a collection
     const sub = async (e) => {
         e.preventDefault();
 
         try {
-            const docRef = await addDoc(collection(db, "Newschool"), {
+
+            const docRef = await addDoc(collection(db, 'Newschool/' + uniqueschoolId + '/schools'), {
                 schoolname: schoolName,
                 schoolemail: schoolEmail,
                 schoolphonenumber: schoolPhonenumber,
@@ -110,30 +63,41 @@ function Listschoolpage() {
         }
     }
 
-    // show the school data
 
-    const fetchschooldata = async () => {
-
-        await getDocs(collection(db, "Newschool"))
-            .then((querySnapshot) => {
-                const newData = querySnapshot.docs
-                    .map((doc) => ({ ...doc.data(), id: doc.id }));
-                setSchools(newData);
-                console.log(schools, newData);
-            })
-
+        const  fetchschooldata = (Newschool) => {
+       
+        // const querySnapshot = getDocs(collection(db, "Newschool").doc(Newschool.id).collection().get())
+        getDocs(collectionGroup(db, "/Newschool"))
+        .then(response => {
+            response.forEach(doc => {
+                console.log(doc.id, ' => ', doc.data());
+              });
+        });
+      
     }
 
     useEffect(() => {
         fetchschooldata();
+      
     }, [])
 
 
+    // const querySnapshot = await db.collectionGroup('landmarks').where('type', '==', 'museum').get();
+    // querySnapshot.forEach((doc) => {
+    //   console.log(doc.id, ' => ', doc.data());
+    // });
+
+    // useEffect(() => {
+    //     fetchchooldata();
+      
+    // }, [])
+
+
+
+ 
     return (
         <>
-
-
-            <div className="bgclr">
+        <div className="bgclr">
                 <div className="bg-white">
                     <div className='p-4 d-flex justify-content-between'>
                         <h3>School list</h3>
@@ -144,7 +108,7 @@ function Listschoolpage() {
                             <tr>
                                 <th>#id</th>
                                 <th>School Name</th>
-                               
+
                                 <th>Phone number</th>
                                 <th>Location</th>
                                 <th>Status</th>
@@ -158,12 +122,13 @@ function Listschoolpage() {
                                     <tr key={i}>
                                         <td>{i}</td>
                                         <td>{school.schoolname}</td>
-                                       
+
                                         <td>{school.schoolphonenumber}</td>
                                         <td>{school.schoollocation}</td>
 
                                         <td>Active</td>
                                         <td>
+                                            <Button variant="contained" className='bg-success text-white me-3  text-center' ><FaIcons.FaEye /></Button>
                                             <Button variant="contained" className='bg-primary text-white me-3  text-center'><FaIcons.FaEdit /></Button>
                                             <Button variant="contained" className='bg-danger text-white'><FaIcons.FaTrashAlt /></Button>
                                         </td>
@@ -173,9 +138,15 @@ function Listschoolpage() {
                                 ))
                             }
 
-                         
+
                         </tbody>
                     </Table>
+
+                    {
+                       newschooldata?.map((schl,i) =>(
+                        <p>{schl}</p>
+                       ))
+                    }
                     <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
                             <Modal.Title>Add new School</Modal.Title>
@@ -187,12 +158,12 @@ function Listschoolpage() {
                                     id="outlined-textarea"
                                     label="Schoolname"
                                     value={schoolName}
-                                    {...register("SchoolName")}
+                                  
                                     className='w-100 my-2 '
                                     onChange={(e) => setSchoolName(e.target.value)}
 
                                 />
-                                <p className='text-danger'>{errors.SchoolName?.message}</p>
+                               
                                 <TextField
                                     id="outlined-textarea"
                                     label="School Email"
@@ -257,7 +228,7 @@ function Listschoolpage() {
 
                     </Modal>
                 </div>
-            </div>
+        </div>
 
 
         </>
