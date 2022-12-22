@@ -1,5 +1,6 @@
 import React from "react";
 import Homepage from "../Pages/Homepage";
+import Navbar from "./Navbar";
 import Sidemenu from "./Sidebar";
 
 
@@ -8,8 +9,9 @@ import Sidemenu from "./Sidebar";
 function Mainpage() {
     return (
         <>
-
-            <div className="d-flex">
+              <Navbar/>
+            <div className="d-flex pt-as">
+               
                 <Sidemenu />
                 <Homepage />
             </div>

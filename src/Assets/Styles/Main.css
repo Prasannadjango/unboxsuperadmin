@@ -53,3 +53,20 @@
 .Card_container{
   height:fit-content;
 }
+.Navbar_logo{
+  width: 100px;
+
+}
+.Navbar_main{
+  z-index: 5;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  background: white;
+  box-shadow: 0 8px 6px -6px rgb(179, 179, 179);
+
+}
+.pt-as{
+   padding-top: 68px;
+}
