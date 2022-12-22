@@ -34,12 +34,7 @@ function Loginpage() {
                     <Col >
                         <Form className='Login_form' onSubmit={handleSubmit}>
                             <h3 className='pb-3 fw-bold'>Login</h3>
-                            <div className='mb-4'>
-                                <TextField id="outlined-basic" label="School-id" variant="outlined" className='w-100 '
-                                    type="text"
-                                  
-                                    />
-                            </div>
+                            
                             <div>
                                 <TextField id="outlined-basic" label="E-mail" variant="outlined" className='w-100 '
                                     type="text"

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Modal, Form } from 'react-bootstrap';
-import { collection, addDoc,collectionGroup, query, where, getDocs} from "firebase/firestore";
+import { collection, addDoc, collectionGroup, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebase-config";
 import * as FaIcons from "react-icons/fa";
 import { useForm } from "react-hook-form";
@@ -8,6 +8,13 @@ import { v4 as uuid } from 'uuid';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 // 
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
+
+} from "firebase/auth";
+import { app } from '../firebase-config.js';
 import { TextField } from '@mui/material';
 import { phoneRegExp, EmailRegExp, numberRegExp, PasswordRegExp } from '../Variables/Regex';
 
@@ -36,10 +43,10 @@ function Listschoolpage() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-   
 
 
- 
+
+
 
     const [schools, setSchools] = useState([]);
 
@@ -53,13 +60,29 @@ function Listschoolpage() {
     const [schoolPassword, setSchoolPassword] = useState("");
     const unique_id = uuid();
     const [uniqueschoolId, setSchooluniqueid] = useState(schoolName.slice(0, 2) + unique_id.slice(0, 5));
-    
-    const [newschooldata,setNewschooldata] = useState([]);
 
+    const [newschooldata, setNewschooldata] = useState([]);
+    const auth = getAuth(app);
 
     //    function for create a collection
     const sub = async (e) => {
         e.preventDefault();
+        createUserWithEmailAndPassword(auth, schoolEmail, schoolPassword)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                console.log(user);
+                alert('successfully created an account');
+
+                // ...
+            })
+
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+                console.log(errorCode);
+            });
 
         try {
 
@@ -92,17 +115,17 @@ function Listschoolpage() {
 
     useEffect(() => {
         fetchschooldata();
-      
+
     }, [])
 
 
- 
 
 
- 
+
+
     return (
         <>
-        <div className="bgclr">
+            <div className="bgclr">
                 <div className="bg-white">
                     <div className='p-4 d-flex justify-content-between'>
                         <h3>School list</h3>
@@ -148,9 +171,9 @@ function Listschoolpage() {
                     </Table>
 
                     {
-                       newschooldata?.map((schl,i) =>(
-                        <p>{schl}</p>
-                       ))
+                        newschooldata?.map((schl, i) => (
+                            <p>{schl}</p>
+                        ))
                     }
                     <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
@@ -206,13 +229,7 @@ function Listschoolpage() {
                                     className='w-100 my-2 '
                                     onChange={(e) => setSchoolAddress(e.target.value)}
                                 />
-                                <TextField
-                                    id="outlined-textarea"
-                                    label="School Info"
-                                    value={schoolInfo}
-                                    className='w-100 my-2 '
-                                    onChange={(e) => setSchoolInfo(e.target.value)}
-                                />
+
                                 <TextField
                                     id="outlined-textarea"
                                     label="School Password"
@@ -233,7 +250,7 @@ function Listschoolpage() {
 
                     </Modal>
                 </div>
-        </div>
+            </div>
 
 
         </>
