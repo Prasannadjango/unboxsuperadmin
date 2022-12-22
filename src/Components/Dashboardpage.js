@@ -6,7 +6,7 @@ import Mainpage from "./Mainpage";
 
 function Dashboardpage() {
     
-    const Getautheticate = localStorage.getItem('authenticated');
+    const Getautheticate = localStorage.getItem('login');
    
     if (Getautheticate === 'true') {
         return (

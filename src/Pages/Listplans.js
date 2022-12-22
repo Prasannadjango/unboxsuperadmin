@@ -1,10 +1,12 @@
 import React from "react";
 import Sidemenu from "../Components/Sidebar";
 import Listplanspage from "../Views/Listplanspage";
-
+import { Navigate} from "react-router-dom";
 
 function Listplans(){
-    return(
+  const Getautheticate = localStorage.getItem('login');
+    if (Getautheticate === 'true'){
+      return(
         <>
           <div className="d-flex">
                 <Sidemenu/>
@@ -12,5 +14,9 @@ function Listplans(){
           </div>
         </>
     );
+    }
+    else{
+      return<Navigate to="/" replace />
+    }
 }
 export default Listplans;
