@@ -86,7 +86,7 @@ function Listschoolpage() {
 
         try {
 
-            const docRef = await addDoc(collection(db, 'New school/' + uniqueschoolId + '/schools'), {
+            const docRef = await addDoc(collection(db, 'New school'), {
                 schoolname: schoolName,
                 schoolemail: schoolEmail,
                 schoolphonenumber: schoolPhonenumber,
