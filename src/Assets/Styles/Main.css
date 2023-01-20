@@ -59,6 +59,7 @@
 }
 .form-control{
   background-color: var(--search-bg) !important;
+  border: 0 !important;
 }
 .Navbar_main{
   z-index: 5;
@@ -950,15 +951,7 @@ th {
 .css-1bdadyq:hover {
   background-color: inherit !important;
 }
-.app-card:hover,
-.app-card1:hover,
-.app-card2:hover,
-.app-card3:hover,
-.app-card4:hover,
-.app-card5:hover {
-  transform: scale(1.02);
-  background-color: var(--theme-bg-color);
-}
+
 thead,
 tbody tr {
   display: table;
@@ -1069,4 +1062,111 @@ tbody tr {
 }
 .Plandelete_btn>button{
   border-radius: inherit;
+}
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root,
+.css-i4bv87-MuiSvgIcon-root,
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input,
+.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root{
+  color:white !important;
+}
+.css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
+  border:none !important;
+  border-radius: 5px;
+}
+.icons_Container {
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background-color: rgb(30, 71, 184);
+  border-radius: 50px;
+  color: white;
+  position: absolute;
+  border: 0;
+  right: 15px;
+  font-size: 28px;
+}
+.icons_Container3 {
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background-color: rgb(35, 170, 64);
+  border-radius: 50px;
+  color: white;
+  position: absolute;
+  border:0;
+  right: 15px;
+  font-size: 28px;
+}
+.icons_Container4 {
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background-color: rgb(219, 55, 43);
+  border-radius: 50px;
+  color: white;
+  position: absolute;
+
+  right: 15px;
+  font-size: 28px;
+}
+.nav-tabs{
+  border: 0;
+}
+.SupportTicket_tabs>li:nth-child(1)>button{
+  background-color: #afc6ff;
+  color: #14162b;
+  border-radius: 30px;
+  font-weight: bold;
+  border: 3px solid #3a6df0;
+  margin-right: 20px;
+}
+.SupportTicket_tabs>li:nth-child(2)>button{
+  background-color: #fdff89;
+  color: #14162b;
+  border-radius: 30px;
+  font-weight: bold;
+  border: 3px solid #ece13b;
+  margin-right: 20px;
+
+}
+.SupportTicket_tabs>li:nth-child(3)>button{
+  background-color: #abfd92;
+  color: #14162b;
+  border-radius: 30px;
+  font-weight: bold;
+  border: 3px solid #5adb32;
+  margin-right: 20px;
+
+}
+.SupportTicket_tabs>li:nth-child(4)>button{
+  background-color: #ff918d;
+  color: #14162b;
+  border-radius: 30px;
+  font-weight: bold;
+  border: 3px solid #d63732;
+  margin-right: 20px;
+
+}
+.SupportTicket_tabs>li:nth-child(4)>button:focus{
+  background-color: #d63732;
+  color: #fff;
+}
+.SupportTicket_tabs>li:nth-child(3)>button:focus{
+  background-color: #5adb32;
+  color: #fff;
+}
+.SupportTicket_tabs>li:nth-child(2)>button:focus{
+  background-color: #ece13b;
+  color: #fff;
+}
+.SupportTicket_tabs>li:nth-child(1)>button:focus,
+.SupportTicket_tabs>li:nth-child(1)>button:active{
+  background-color: #3a6df0;
+  color: #fff;
+}
+.Ticket_badge{
+  width: fit-content;
 }

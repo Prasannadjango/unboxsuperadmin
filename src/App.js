@@ -9,6 +9,8 @@ import Mainpage from "./Components/Mainpage";
 import Homepage from "./Pages/Homepage";
 import Listschool from "./Pages/Listschools";
 import Listplans from "./Pages/Listplans";
+import Sendnotification from "./Pages/Sendnotification";
+import SupportTicket from "./Pages/supportTicket";
 function App() {
   return (
     <>
@@ -21,6 +23,8 @@ function App() {
               <Route path="/Mainpage" element={<Mainpage />} />
               <Route path="/Listschool" element={<Listschool />} />
               <Route path="/Listplans" element={<Listplans/>} />
+              <Route path="/Sendnotifications" element={<Sendnotification/>}/>
+              <Route path="/SupportTicket" element={<SupportTicket/>}/>
             </Routes>
 
           </BrowserRouter>
