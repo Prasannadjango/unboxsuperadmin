@@ -141,6 +141,11 @@ export default function SupportTicketpage() {
                                     <Modal show={show} onHide={handleClose} className='app-card text-white'>
                                         <Modal.Header >
                                             <Modal.Title>Ticket ID : #1231</Modal.Title>
+
+                                        <Button className='bg-transparent border-0 fs-2' onClick={handleClose}>
+            <FaIcons.FaRegTimesCircle/>
+          </Button>
+
                                         </Modal.Header>
                                         <Modal.Body>
                                             <div className='Chat_container overflow-container'>
@@ -162,10 +167,6 @@ export default function SupportTicketpage() {
                                                 </Button>
                                             </div>
                                         </Modal.Body>
-
-                                        {/* <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button> */}
 
 
                                     </Modal>
