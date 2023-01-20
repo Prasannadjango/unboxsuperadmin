@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
-import { Row, Col, Card, Tabs, Tab, Table, Badge, Form, FormControl } from "react-bootstrap";
+import { Row, Col, Card, Tabs, Tab, Table, Modal, Badge, Form, FormControl, Button } from "react-bootstrap";
 
 export default function SupportTicketpage() {
+    const [show, setShow] = useState(false);
 
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     return (
         <>
             <div className="content-wrapper w-100">
@@ -82,6 +85,7 @@ export default function SupportTicketpage() {
                                                 <th>Title</th>
                                                 <th>Ticket Date</th>
                                                 <th className="col-2">Status</th>
+                                                <th className="col-1">Chat</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -94,6 +98,11 @@ export default function SupportTicketpage() {
                                                         Pending
                                                     </Badge>
                                                 </td>
+                                                <td className="col-1">
+                                                    <Button className='fs-6' onClick={handleShow}>
+                                                        <FaIcons.FaRegPaperPlane />
+                                                    </Button>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td className="col-2">#1231</td>
@@ -103,6 +112,11 @@ export default function SupportTicketpage() {
                                                     <Badge pill bg="success" className="py-2 Ticket_badge">
                                                         Resolved
                                                     </Badge>
+                                                </td>
+                                                <td className="col-1">
+                                                    <Button className='fs-6'>
+                                                        <FaIcons.FaRegPaperPlane />
+                                                    </Button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -114,11 +128,47 @@ export default function SupportTicketpage() {
                                                         Cancelled
                                                     </Badge>
                                                 </td>
+                                                <td className="col-1">
+                                                    <Button className='fs-6'>
+                                                        <FaIcons.FaRegPaperPlane />
+                                                    </Button>
+                                                </td>
                                             </tr>
 
 
                                         </tbody>
                                     </Table>
+                                    <Modal show={show} onHide={handleClose} className='app-card text-white'>
+                                        <Modal.Header >
+                                            <Modal.Title>Ticket ID : #1231</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <div className='Chat_container overflow-container'>
+                                                <div className="position-relative">
+                                                    <div className='Received_chat col-6 app-card p-2 mb-3'>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                    </div>
+                                                    <div className='Sender_chat col-6 app-card p-2'>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div className="Texting_container d-flex ">
+                                                <FormControl type='text' placeholder="send message..." className="text-white"/>
+                                                <Button>
+                                                    <FaIcons.FaShare/>
+                                                </Button>
+                                            </div>
+                                        </Modal.Body>
+
+                                        {/* <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button> */}
+
+
+                                    </Modal>
                                 </div>
                             </Tab>
                             <Tab eventKey="profile" title="Pending">

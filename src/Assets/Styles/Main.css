@@ -1117,7 +1117,7 @@ tbody tr {
 }
 .SupportTicket_tabs>li:nth-child(1)>button{
   background-color: #afc6ff;
-  color: #14162b;
+  color: #3a6df0;
   border-radius: 30px;
   font-weight: bold;
   border: 3px solid #3a6df0;
@@ -1125,16 +1125,19 @@ tbody tr {
 }
 .SupportTicket_tabs>li:nth-child(2)>button{
   background-color: #fdff89;
-  color: #14162b;
+  color: #ece13b;
   border-radius: 30px;
   font-weight: bold;
   border: 3px solid #ece13b;
   margin-right: 20px;
 
 }
+.modal-content{
+  background-color:var(--dropdown-bg) !important;
+}
 .SupportTicket_tabs>li:nth-child(3)>button{
   background-color: #abfd92;
-  color: #14162b;
+  color: #5adb32;
   border-radius: 30px;
   font-weight: bold;
   border: 3px solid #5adb32;
@@ -1143,7 +1146,7 @@ tbody tr {
 }
 .SupportTicket_tabs>li:nth-child(4)>button{
   background-color: #ff918d;
-  color: #14162b;
+  color: #d63732;;
   border-radius: 30px;
   font-weight: bold;
   border: 3px solid #d63732;
@@ -1169,4 +1172,9 @@ tbody tr {
 }
 .Ticket_badge{
   width: fit-content;
+}
+.Sender_chat{
+  background-color: var(--primary--color);
+  position: absolute;
+  right: 10px;
 }
