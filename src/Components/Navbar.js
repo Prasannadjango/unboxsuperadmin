@@ -27,7 +27,7 @@ function Navbar() {
             <div className="d-flex position-fixed Navbar_main py-2 px-3 ">
                 <div className="Navbar_logo">
                     {/* <img src={Logo} className='w-100 h-100' /> */}
-                    <h2>unbox</h2>
+                    <h2 className="text-white">unbox</h2>
                 </div>
                 <div className="Navbar_logo">
                     <Button onClick={logout}>

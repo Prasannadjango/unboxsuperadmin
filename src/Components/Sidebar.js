@@ -12,7 +12,8 @@ function Sidemenu() {
                <MenuItem icon={<FaIcons.FaHome className="fs-5" />} routerLink={<Link to="/Mainpage" />} > Dashboard</MenuItem>
                <MenuItem icon={<FaIcons.FaSchool className="fs-5" />} routerLink={<Link to="/Listschool" />} >Manage Schools</MenuItem>
                <MenuItem icon={<FaIcons.FaCommentsDollar className="fs-5" />} routerLink={<Link to="/Listplans" />} >Plans</MenuItem>
-              
+               <MenuItem icon={<FaIcons.FaBell className="fs-5" />} routerLink={<Link to="/Listplans" />} >Send Notifications</MenuItem>
+               
             </Menu>
          </Sidebar>
 

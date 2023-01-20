@@ -9,11 +9,13 @@ function Listplans(){
     if (Getautheticate === 'true'){
       return(
         <>
+        <div className="app">
         <Navbar/>
           <div className="d-flex pt-as">
                 <Sidemenu/>
                 <Listplanspage/>
           </div>
+        </div>
         </>
     );
     }

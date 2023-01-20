@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Row, Col, Form } from "react-bootstrap";
 import Loginpageimg from '../Assets/Images/Logoimage.svg';
 import { TextField, Button } from '@mui/material';
+import { collection, addDoc, getDocs, getDoc,doc, collectionGroup } from "firebase/firestore";
+import { db } from "../firebase-config";
 import {
     getAuth,
     createUserWithEmailAndPassword,
@@ -10,7 +12,31 @@ import {
   
   } from "firebase/auth";
   import { app } from '../firebase-config';
+
+
+// const snapshot = await db.firestore().collection('e').get()
+// return snapshot.docs.map(doc => doc.data());
+
 function Loginpage() {
+
+
+//     const [Schoolid,setschoolid] = useState('');
+
+
+
+const [pets, setPets] = useState([]);
+const [collectionIds, setCollectionIds] = useState([])
+
+  const fetchschoolid = async ()=>{
+    await fetch('https://Unbox.cloudfunctions.net/Newschool')
+    .then(response => response.json())
+    .then(({ data }) => setCollectionIds(data))
+    console.log("Id response",collectionIds);
+
+  }
+
+
+
     const navigate = useNavigate();
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
@@ -37,7 +63,7 @@ function Loginpage() {
     return (
         <>
             <div className="Loginpage_container px-4">
-
+                 <Button onClick={fetchschoolid}>click me</Button>
                 <Row xl={2} className='align-items-center'>
                     <Col>
                         <img src={Loginpageimg} />

@@ -70,54 +70,106 @@ function Listplanspage() {
     }, [])
     return (
         <>
-            <div className="d-flex bgclr">
+            <div className="d-flex content-wrapper w-100">
 
                 <div className='col-8 me-3 '>
-                    <Row>
-                        {
-                            Plans?.map((plan, i) => (
+                    <div className="app-card overflow-container">
+                        <h2>Plans section</h2>
 
-                                <Col key={i} xl={4} className='Card_container'>
-
-
-
-
-                                    <Card className='Plans_card mb-4'>
-
-                                        <div >
-                                            <Card.Body>
-                                                <h5 className='text-capitalize'>{plan.Planname}</h5>
-                                                <Card.Text>
-                                                    <h3 className='fw-bold'>{plan.Planprice}</h3>
-                                                    <p className="m-0 text-secondary">
-                                                        {plan.plandescription}
-                                                    </p>
-                                                    <div className="m-0">
-                                                        {plan.planlist?.map((plans, a) =>
-
-                                                            <ul key={a} className='ps-3 list-style' >
-                                                                <li> {plans.planDetails}</li>
-                                                            </ul>
-                                                        )}
-                                                    </div>
-
-                                                </Card.Text>
-
-                                            </Card.Body>
+                        <Row xl={2}>
+                            <Col className="p-4">
+                                <Card className='Price_card p-4 position-relative'>
+                                    <span className="plan_tag">
+                                        Basic plan
+                                    </span>
+                                    <h2 className="m-0 py-2">$10</h2>
+                                    <p className="m-0">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec varius porta neque, quis sollicitudin nisl .
+                                    </p>
+                                    
+                                     <ul className=" my-4 Plan_list px-2">
+                                           <li >  Lorem ipsum dolor sit amet</li>
+                                           <li >  Lorem ipsum dolor sit amet</li>
+                                     </ul>
+                                        <div className="Plandelete_btn">
+                                              <Button variant="danger">
+                                                <FaIcons.FaTrash/>
+                                              </Button>
                                         </div>
-
-
-                                    </Card>
-
-
-                                </Col>
-
-                            ))
-                        }
-                    </Row>
+                                     <Button className="btn">Update Plan</Button>
+                                </Card>
+                            </Col>
+                            <Col className="p-4">
+                                <Card className='Price_card p-4'>
+                                    <span className="plan_tag">
+                                       Silver plan
+                                    </span>
+                                    <h2 className="m-0 py-2">$30</h2>
+                                    <p className="m-0">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec varius porta neque, quis sollicitudin nisl .
+                                    </p>
+                                    
+                                     <ul className=" my-4 Plan_list px-2">
+                                           <li >  Lorem ipsum dolor sit amet</li>
+                                           <li >  Lorem ipsum dolor sit amet</li>
+                                     </ul>
+                                     <div className="Plandelete_btn">
+                                              <Button variant="danger">
+                                                <FaIcons.FaTrash/>
+                                              </Button>
+                                        </div>
+                                     <Button className="btn">Update Plan</Button>
+                                </Card>
+                            </Col>
+                            <Col className="p-4">
+                                <Card className='Price_card p-4'>
+                                    <span className="plan_tag">
+                                      Gold plan
+                                    </span>
+                                    <h2 className="m-0 py-2">$30</h2>
+                                    <p className="m-0">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec varius porta neque, quis sollicitudin nisl .
+                                    </p>
+                                    
+                                     <ul className=" my-4 Plan_list px-2">
+                                           <li >  Lorem ipsum dolor sit amet</li>
+                                           <li >  Lorem ipsum dolor sit amet</li>
+                                     </ul>
+                                     <div className="Plandelete_btn">
+                                              <Button variant="danger">
+                                                <FaIcons.FaTrash/>
+                                              </Button>
+                                        </div>
+                                     <Button className="btn">Update Plan</Button>
+                                </Card>
+                            </Col>
+                            <Col className="p-4">
+                                <Card className='Price_card p-4'>
+                                    <span className="plan_tag">
+                                     platinum plan
+                                    </span>
+                                    <h2 className="m-0 py-2">$30</h2>
+                                    <p className="m-0">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec varius porta neque, quis sollicitudin nisl .
+                                    </p>
+                                    
+                                     <ul className=" my-4 Plan_list px-2">
+                                           <li >  Lorem ipsum dolor sit amet</li>
+                                           <li >  Lorem ipsum dolor sit amet</li>
+                                     </ul>
+                                     <div className="Plandelete_btn">
+                                              <Button variant="danger">
+                                                <FaIcons.FaTrash/>
+                                              </Button>
+                                        </div>
+                                     <Button className="btn">Update Plan</Button>
+                                </Card>
+                            </Col>
+                        </Row>
+                    </div>
                 </div>
                 <div className="col-4">
-                    <div className="bg-white p-4">
+                    <div className="app-card overflow-container p-4">
                         <Form >
                             <h3 className=" py-1"> Add new Plan</h3>
                             <label>Plan name</label>
