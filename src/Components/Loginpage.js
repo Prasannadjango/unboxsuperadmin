@@ -38,8 +38,8 @@ const [collectionIds, setCollectionIds] = useState([])
 
 
     const navigate = useNavigate();
-    const [email, setemail] = useState("");
-    const [password, setpassword] = useState("");
+    const [email, setemail] = useState("Admin");
+    const [password, setpassword] = useState("admin");
     const auth = getAuth(app);
     const signin = (e) =>{
         e.preventDefault();
